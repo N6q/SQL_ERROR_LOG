@@ -19,3 +19,8 @@ GROUP BY E.Dnumber;
 --D is an alias for Department
 
 --E.Dnumber and D.Dnumber clearly indicate which table the column is from.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+![image](https://github.com/user-attachments/assets/be302121-b99a-41e4-bd1a-1f654fca8505)
+
+
