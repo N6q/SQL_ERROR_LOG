@@ -23,4 +23,42 @@ GROUP BY E.Dnumber;
 
 ![image](https://github.com/user-attachments/assets/be302121-b99a-41e4-bd1a-1f654fca8505)
 
+🛠️ Error Report: Scalar Function CheckStudentName
+📄 File: Sql Functions Demo.sql
+🧪 Function: dbo.CheckStudentName
 
+
+❌ Error Message:
+Msg 455, Level 16, State 2, Procedure CheckStudentName, Line 18
+The last statement included within a function must be a return statement.
+
+🧩 Root Cause:
+SQL Server scalar functions must end with a RETURN statement. The error was triggered because there was likely a trailing statement or a missing RETURN clause in the function logic.
+
+✅ Fix Implemented:
+The function was corrected by ensuring that every conditional branch ends in a RETURN statement, and that no executable code remains after the final RETURN.
+
+
+CREATE FUNCTION dbo.CheckStudentName(@StudentID INT)
+RETURNS VARCHAR(100)
+AS
+BEGIN
+    DECLARE @FirstName NVARCHAR(50), @LastName NCHAR(10)
+
+    SELECT @FirstName = St_Fname, @LastName = St_Lname
+    FROM Student
+    WHERE St_Id = @StudentID
+
+    IF @FirstName IS NULL AND @LastName IS NULL
+        RETURN 'First name & last name are null'
+    ELSE IF @FirstName IS NULL
+        RETURN 'First name is null'
+    ELSE IF @LastName IS NULL
+        RETURN 'Last name is null'
+    ELSE
+        RETURN 'First name & last name are not null'
+END;
+📝 Notes:
+Ensure no print/debug statements or logic exist after the final RETURN in scalar functions.
+
+Always test your scalar functions in isolation to catch syntax/logic errors early.
