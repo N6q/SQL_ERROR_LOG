@@ -39,11 +39,11 @@ SQL Server scalar functions must end with a RETURN statement. The error was trig
 The function was corrected by ensuring that every conditional branch ends in a RETURN statement, and that no executable code remains after the final RETURN.
 
 
-CREATE FUNCTION dbo.CheckStudentName(@StudentID INT)
-RETURNS VARCHAR(100)
-AS
-BEGIN
-    DECLARE @FirstName NVARCHAR(50), @LastName NCHAR(10)
+    CREATE FUNCTION dbo.CheckStudentName(@StudentID INT)
+    RETURNS VARCHAR(100)
+    AS
+    BEGIN
+        DECLARE @FirstName NVARCHAR(50), @LastName NCHAR(10)
 
     SELECT @FirstName = St_Fname, @LastName = St_Lname
     FROM Student
@@ -57,7 +57,8 @@ BEGIN
         RETURN 'Last name is null'
     ELSE
         RETURN 'First name & last name are not null'
-END;
+    END;
+    
 📝 Notes:
 Ensure no print/debug statements or logic exist after the final RETURN in scalar functions.
 
