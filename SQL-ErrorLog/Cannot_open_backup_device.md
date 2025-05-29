@@ -14,10 +14,8 @@ To resolve the issue:
 1. Create the Directory
 Ensure the directory C:\Backups\ exists on your system. You can create it manually using File Explorer or with a command like:
 
-powershell
-Copy
-Edit
-mkdir C:\Backups
+
+""mkdir C:\Backups""
 2. Verify Permissions
 Make sure the SQL Server service account has write access to the folder.
 
@@ -26,8 +24,6 @@ You can check the service account in SQL Server Configuration Manager under SQL 
 3. Alternatively, Use an Existing Writable Folder
 Update the BACKUP DATABASE command to use a folder that is already writable, such as:
 
-sql
-Copy
-Edit
-BACKUP DATABASE TrainingDB TO DISK = 'C:\Temp\TrainingDB_Full.bak';
+
+""BACKUP DATABASE TrainingDB TO DISK = 'C:\Temp\TrainingDB_Full.bak';""
 Ensure the C:\Temp folder exists.
